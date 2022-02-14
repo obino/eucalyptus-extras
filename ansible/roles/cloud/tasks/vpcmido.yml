@@ -3,10 +3,11 @@
   yum:
     name:
       - java-1.8.0-openjdk-headless
-      - midolman
-      - midonet-cluster
-      - midonet-tools
-      - python-midonetclient
+      - /root/midonet/midolman-5.2.2-1.0.el7.noarch.rpm
+      - /root/midonet/midonet-cluster-5.2.2-1.0.el7.noarch.rpm
+      - /root/midonet/midonet-tools-5.2.2-1.0.el7.noarch.rpm
+      - /root/midonet/python-midonetclient-5.2.2-1.0.el7.noarch.rpm
+      - /root/midonet/quagga-0.99.23-0.el7.midokura.x86_64.rpm
     state: present
   tags:
     - image
@@ -170,16 +171,16 @@
     - firewalld
   when: cloud_firewalld_configure and firewalld_result.changed
 
-- name: eucalyptus firewalld midonet gateway service for zone
-  firewalld:
-    zone: "{{ cloud_firewalld_vpcmidogw_zone }}"
-    service: euca-vpcmidogw
-    state: enabled
-    permanent: yes
-    immediate: "{{ cloud_firewalld_start }}"
-  tags:
-    - firewalld
-  when: cloud_firewalld_configure and cloud_firewalld_vpcmidogw_zone is not none
+#- name: eucalyptus firewalld midonet gateway service for zone
+#  firewalld:
+#    zone: "{{ cloud_firewalld_vpcmidogw_zone }}"
+#    service: euca-vpcmidogw
+#    state: enabled
+#    permanent: yes
+#    immediate: "{{ cloud_firewalld_start }}"
+#  tags:
+#    - firewalld
+#  when: cloud_firewalld_configure and cloud_firewalld_vpcmidogw_zone is not none
 
 - name: eucalyptus firewalld midonet gateway dedicated interface zone
   firewalld:
