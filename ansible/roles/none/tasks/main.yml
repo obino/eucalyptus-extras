@@ -111,6 +111,10 @@
       - python-midonetclient
       - zkdump
       - zookeeper
+      - libzookeeper
+      - python-zookeeper
+      - lldpd
+      - quagga
     state: absent
 
 - name: remove ceph packages
